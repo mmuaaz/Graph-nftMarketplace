@@ -1,0 +1,34 @@
+#with the following "entities" we define what we want our subgraph to keep track of
+# we are gonna make this new "activeItem" table that is gonna be some function of the three tables below it
+
+type ActiveItem @entity {
+  id: ID!
+  buyer: Bytes! # address // this could be blank as its gonna have 0x000.000 address if no one has bought yet
+  seller: Bytes!
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+  price: BigInt # we are leaving the "!" mark so that we allow price be zero if the seller wants it to be zero
+}
+
+type ItemListed @entity {
+  id: ID!
+  seller: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+  price: BigInt
+}
+
+type ItemCanceled @entity {
+  id: ID!
+  seller: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+}
+
+type ItemBought @entity {
+  id: ID!
+  buyer: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt!
+  price: BigInt
+}
